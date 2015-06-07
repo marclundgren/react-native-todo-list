@@ -1,0 +1,14 @@
+{
+  "name": "ReactNativeTodoList",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node_modules/react-native/packager/packager.sh"
+  },
+  "dependencies": {
+    "react-native": "^0.4.3",
+    "tcomb": "^1.0.3",
+    "tcomb-form-native": "^0.1.8",
+    "tcomb-validation": "^1.0.4"
+  }
+}
