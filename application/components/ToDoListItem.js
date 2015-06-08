@@ -3,6 +3,7 @@ var styles = require('../styles/styles');
 var React = require('react-native');
 var { Text, View, TouchableHighlight } = React;
 var ToDoEdit = require('./ToDoEdit');
+var Icon = require('EvilIcons');
 
 class ToDoListItem extends React.Component {
 
@@ -67,9 +68,9 @@ class ToDoListItem extends React.Component {
     return (
       <View style={stylesContainer}>
         <TouchableHighlight onPress={this.toggleCompleted.bind(this)} style={styleChecker}>
-          <Text>
-            x
-          </Text>
+          <View>
+            <Icon name="check" size={30} color="gray" />
+          </View>
         </TouchableHighlight>
         <Text style={[styles.txt, completed && styles.completed]}>
           {textContent}

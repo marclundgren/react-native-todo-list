@@ -9,6 +9,7 @@
     "react-native": "^0.4.3",
     "tcomb": "^1.0.3",
     "tcomb-form-native": "^0.1.8",
-    "tcomb-validation": "^1.0.4"
+    "tcomb-validation": "^1.0.4",
+    "react-native-vector-icons": "^0.6.1"
   }
 }
