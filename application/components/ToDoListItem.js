@@ -2,32 +2,78 @@
 var styles = require('../styles/styles');
 var React = require('react-native');
 var { Text, View, TouchableHighlight } = React;
-
+var ToDoEdit = require('./ToDoEdit');
 
 class ToDoListItem extends React.Component {
+
   getDefaultProps () {
+    return {
+      initialTextContent: ''
+    };
+  }
+
+  getInitialState () {
     return {
       textContent: 'Buy groceries',
       completed: false
     }
   }
 
+  componentWillMount () {
+    this.setState({
+      textContent: this.props.initialTextContent
+    })
+  }
+
+  edit (rowData, rowID) {
+    console.log('todo...')
+
+    // this.props.navigator.push({
+    //   title: this.props.textContent,
+    //   component: ToDoEdit,
+    // });
+  }
+
+  toggleCompleted () {
+    var completed = !this.state.completed;
+
+    this.setState({ completed });
+  }
+
+  // complete () {
+  //   this.setState({
+  //     completed: true
+  //   })
+  // }
+
   render () {
 
-    const completed = this.props.completed;
-    const textContent = this.props.textContent;
+    const completed = this.state.completed;
+    const textContent = this.state.textContent;
 
+    const styleChecker = {
+      flex: 1,
+      padding: 5
+    };
+
+    var stylesContainer = {
+      flex: 1,
+      flexDirection: 'row',
+      // justifyContent: 'center',
+      // alignItems: 'flex-start',
+      padding: 10,
+      backgroundColor: '#ffffff',
+    };
     return (
-      <View>
-        <TouchableHighlight
-          onPress={this.props.onPress}>
-          <View style={styles.container}>
-            <Text style={[styles.txt, completed && styles.completed]}>
-              {textContent}
-            </Text>
-          </View>
+      <View style={stylesContainer}>
+        <TouchableHighlight onPress={this.toggleCompleted.bind(this)} style={styleChecker}>
+          <Text>
+            x
+          </Text>
         </TouchableHighlight>
-        <View style={styles.hr}/>
+        <Text style={[styles.txt, completed && styles.completed]}>
+          {textContent}
+        </Text>
       </View>
     );
   }
