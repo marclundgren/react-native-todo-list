@@ -3,14 +3,18 @@ var styles = require('../styles/styles');
 var React = require('react-native');
 var ToDoListItem = require('./ToDoListItem');
 var { Text, TextInput, ListView, View } = React;
+var Icon = require('EvilIcons');
 
 class ToDoList extends React.Component {
   constructor () {
     super();
     this.state = {
-      items: [{
-        initialTextContent: 'First item'
-      }],
+      items: [
+        { initialTextContent: 'Uno'},
+        { initialTextContent: 'Dos'},
+        { initialTextContent: 'Tres'},
+
+      ],
       newInputText: ''
     };
   }
@@ -25,13 +29,76 @@ class ToDoList extends React.Component {
     this.addItem(event.nativeEvent.text);
   }
 
-  renderHeader () {
+  renderNavicon () {
     const style = {
-      backgroundColor: '#eee'
+      flex: 1,
+      alignSelf: 'center',
     };
 
     return (
       <View style={style}>
+        <Text>Navicon</Text>
+      </View>
+    );
+  }
+  renderTitle () {
+    const style = {
+      flex: 1,
+      textAlign: 'center',
+    };
+
+    const textStyle = {
+      fontSize: 28,
+      textAlign: 'center',
+    };
+
+    return (
+      <View style={style}>
+        <Text style={textStyle}>TodoList</Text>
+      </View>
+    );
+  }
+  renderEditToggler () {
+    const style = {
+      flex: 1,
+      alignSelf: 'center',
+    };
+
+    const textStyle = {
+      textAlign: 'right',
+      // this doesn't seem to work...
+    }
+
+    const iconColor = '#333'
+
+    return (
+      <View style={style}>
+        <Icon name="pencil" size={27} color={iconColor} />
+      </View>
+    );
+  }
+
+  renderHeader () {
+
+    const containerStyle = {
+      backgroundColor: '#eee'
+    };
+
+
+    const topStyle = {
+      // backgroundColor: 'red',
+      borderWidth: 1,
+      // flexDirection: 'row',
+      flexDirection: 'row',
+    };
+
+    return (
+      <View style={containerStyle}>
+        <View style={topStyle}>
+          {this.renderNavicon()}
+          {this.renderTitle()}
+          {this.renderEditToggler()}
+        </View>
         {this.renderNewItemInput()}
       </View>
     )
@@ -82,7 +149,7 @@ class ToDoList extends React.Component {
     });
   }
 
-  renderItem (rowData, sectionID, rowID) {
+  renderListItem (rowData, sectionID, rowID) {
     return (
       <View>
         <ToDoListItem initialTextContent={rowData.initialTextContent}/>
@@ -97,8 +164,8 @@ class ToDoList extends React.Component {
     return (
       <ListView
         dataSource={dataSource}
-        renderHeader={this.renderHeader.bind(this)}
-        renderRow={this.renderItem.bind(this)}
+        renderSectionHeader={this.renderHeader.bind(this)}
+        renderRow={this.renderListItem.bind(this)}
         style={styles.listView}/>
     );
   }
