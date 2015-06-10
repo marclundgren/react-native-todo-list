@@ -21,12 +21,6 @@ class ToDoList extends React.Component {
     });
   }
 
-  onChange (event) {
-    this.setState({
-      newInputText: event.nativeEvent.text
-    });
-  }
-
   onSubmitEditing (event) {
     this.addItem(event.nativeEvent.text);
   }
@@ -63,12 +57,13 @@ class ToDoList extends React.Component {
 
     return (
       <TextInput
-        ref="theinput"
         autoFocus={true}
-        value={this.state.newInputText}
-        placeholder={'Buy groceries'}
+        placeholder={'Add New Task'}
         style={style}
-        onChange={this.onChange.bind(this)}
+        selectTextOnFocus={true}
+        value={this.state.newInputText}
+        bufferDelay={1}
+        onChangeText={(text) => this.setState({newInputText: text})}
         onSubmitEditing={this.onSubmitEditing.bind(this)}
         returnKeyType={'done'}/>
     );

@@ -47,11 +47,12 @@ var styles = StyleSheet.create({
   },
 
   txt: {
-    // fontSize: 18,
+    fontSize: 18,
+    lineHeight: 18,
     marginTop: 5,
     marginBottom: 5,
-    color: '#222222',
-    flex: 10
+    paddingTop: 5,
+    color: '#222222'
   },
 
   completed: {
