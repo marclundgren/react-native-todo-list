@@ -2,7 +2,7 @@
 var styles = require('../styles/styles');
 var React = require('react-native');
 var ToDoListItem = require('./ToDoListItem');
-var { Text, TextInput, ListView, View } = React;
+var { Text, TextInput, ListView, View, TouchableOpacity } = React;
 var Icon = require('EvilIcons');
 
 const ICON_COLOR = '#333'
@@ -19,6 +19,7 @@ class ToDoList extends React.Component {
         { initialTextContent: 'input race condition'},
 
       ],
+      editing: false,
       newInputText: ''
     };
   }
@@ -40,7 +41,7 @@ class ToDoList extends React.Component {
     };
 
     const iconStyle = {
-      marginRight: 80,
+      marginRight: 90,
       paddingBottom: 5,
       alignSelf: 'center'
     }
@@ -68,6 +69,11 @@ class ToDoList extends React.Component {
       </View>
     );
   }
+
+  toggleEditing () {
+    this.setState({editing: !this.state.editing});
+  }
+
   renderEditToggler () {
     const style = {
       flex: 1,
@@ -75,15 +81,23 @@ class ToDoList extends React.Component {
     };
 
     const iconStyle = {
-      marginLeft: 80,
+      marginLeft: 90,
       paddingBottom: 5,
       alignSelf: 'center',
     }
 
+    const iconName = this.state.editing ? 'close' : 'pencil';
+
     return (
-      <View style={style}>
-        <Icon style={iconStyle} name="pencil" size={27} color={ICON_COLOR} />
-      </View>
+      <TouchableOpacity onPress={this.toggleEditing.bind(this)} style={style}>
+        <View>
+          <Icon
+            style={iconStyle}
+            name={iconName}
+            size={27}
+            color={ICON_COLOR} />
+        </View>
+      </TouchableOpacity>
     );
   }
 
