@@ -5,14 +5,18 @@ var ToDoListItem = require('./ToDoListItem');
 var { Text, TextInput, ListView, View } = React;
 var Icon = require('EvilIcons');
 
+const ICON_COLOR = '#333'
+
 class ToDoList extends React.Component {
   constructor () {
     super();
     this.state = {
       items: [
-        { initialTextContent: 'Uno'},
-        { initialTextContent: 'Dos'},
-        { initialTextContent: 'Tres'},
+        { initialTextContent: 'Things to fix'},
+        { initialTextContent: 'when the input accepts a long string'},
+        { initialTextContent: 'the pencil should be aligned better'},
+        { initialTextContent: 'ditto for the navicon'},
+        { initialTextContent: 'input race condition'},
 
       ],
       newInputText: ''
@@ -35,9 +39,15 @@ class ToDoList extends React.Component {
       alignSelf: 'center',
     };
 
+    const iconStyle = {
+      marginRight: 80,
+      paddingBottom: 5,
+      alignSelf: 'center'
+    }
+
     return (
       <View style={style}>
-        <Text>Navicon</Text>
+        <Icon style={iconStyle} name="navicon" size={27} color={ICON_COLOR} />
       </View>
     );
   }
@@ -64,16 +74,15 @@ class ToDoList extends React.Component {
       alignSelf: 'center',
     };
 
-    const textStyle = {
-      textAlign: 'right',
-      // this doesn't seem to work...
+    const iconStyle = {
+      marginLeft: 80,
+      paddingBottom: 5,
+      alignSelf: 'center',
     }
-
-    const iconColor = '#333'
 
     return (
       <View style={style}>
-        <Icon name="pencil" size={27} color={iconColor} />
+        <Icon style={iconStyle} name="pencil" size={27} color={ICON_COLOR} />
       </View>
     );
   }
